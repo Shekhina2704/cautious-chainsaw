@@ -1,0 +1,25 @@
+import math
+data1=[[40,174,63,5.70,69],[50,126,73,5.00,66],[32,140,72,5.30,85]]
+data2=[[50,130,70,5.00],[10,180,80,6.00],[70,150,80,6.50]]
+targ = [data1[i][len(data1)-1] for i in range(len(data1))]
+k = 2
+predict = []
+for i in data2:
+    d2=[]
+    m = 0
+    for j in data1:
+        d= [(i[q]-j[q])**2 for q in range(len(j)-1)]
+        d1 = math.sqrt(sum(d))
+        d2.append(d1)
+    lis = []
+    for x in data1:
+        sq=[]
+        sq.append(x[len(x)-1])
+        sq.append(d2[m])
+        lis.append(sq)
+        m += 1
+    lis.sort(key = lambda x: x[1])
+    a = [i[0] for i in lis]
+    pred = sum(a[0:k])/k
+    predict.append(pred)
+print(predict)    
